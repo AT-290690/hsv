@@ -336,6 +336,7 @@ export const processing = engine => ({
     canvasContainer.style.display = 'block';
     State.drawMode = mode;
     const canvas = engine.createCanvas(w, h, mode);
+    State.currentCanvas = { w, h };
     canvas.parent('canvas-container');
   },
   createWebGlCanvas: (
