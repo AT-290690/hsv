@@ -33,10 +33,10 @@ const createP5 = () => {
     );
   }
 };
-setTimeout(
-  () => document.body.removeChild(document.getElementById('splash-screen')),
-  1000
-);
+setTimeout(() => {
+  document.body.removeChild(document.getElementById('splash-screen'));
+  createP5();
+}, 1000);
 
 window.addEventListener('resize', () => {
   if (State.P5) {
@@ -45,15 +45,16 @@ window.addEventListener('resize', () => {
     cancelAnimationFrame(State.P5.draw);
     State.P5.remove();
     State.P5 = null;
+  } else {
+    if (State.timer) clearTimeout(State.timer);
+    State.timer = setTimeout(() => {
+      createP5();
+      const canv = State.P5.createCanvas(
+        State.currentCanvas.w,
+        State.currentCanvas.h,
+        State.drawMode
+      );
+      canv.parent('canvas-container');
+    }, 100);
   }
-  if (State.timer) clearTimeout(State.timer);
-  State.timer = setTimeout(() => {
-    createP5();
-    const canv = State.P5.createCanvas(
-      State.currentCanvas.w,
-      State.currentCanvas.h,
-      State.drawMode
-    );
-    canv.parent('canvas-container');
-  }, 100);
 });
