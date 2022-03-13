@@ -55,6 +55,6 @@ window.addEventListener('resize', () => {
         State.drawMode
       );
       canv.parent('canvas-container');
-    }, 100);
+    }, 300);
   }
 });
