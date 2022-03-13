@@ -33,10 +33,10 @@ const createP5 = () => {
     );
   }
 };
-setTimeout(() => {
-  document.body.removeChild(document.getElementById('splash-screen'));
-  createP5();
-}, 1000);
+setTimeout(
+  () => document.body.removeChild(document.getElementById('splash-screen')),
+  1000
+);
 
 window.addEventListener('resize', () => {
   if (State.P5) {
